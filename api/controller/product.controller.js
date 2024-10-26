@@ -1,29 +1,27 @@
-import Product from '../models/product.model.js';
-import { errorHandler } from '../utils/error.js';
+import Product from "../models/product.model.js";
+import { errorHandler } from "../utils/error.js";
 
-// Create product with image upload
 export const create = async (req, res, next) => {
   if (!req.body.title || !req.body.description) {
-    return next(errorHandler(400, 'Please provide all required fields'));
+    return next(errorHandler(400, "Please provide all required fields"));
   }
 
   const slug = req.body.title
-    .split(' ')
-    .join('-')
+    .split(" ")
+    .join("-")
     .toLowerCase()
-    .replace(/[^a-zA-Z0-9-]/g, '');
+    .replace(/[^a-zA-Z0-9-]/g, "");
 
-  // Ensure the image is correctly uploaded and the path is saved
   const image = req.file ? `/upload/${req.file.filename}` : null;
 
   if (!image) {
-    return next(errorHandler(400, 'Image is required'));
+    return next(errorHandler(400, "Image is required"));
   }
 
   const newProduct = new Product({
     ...req.body,
     slug,
-    image, // Save the image path to the product
+    image,
   });
 
   try {
@@ -34,7 +32,6 @@ export const create = async (req, res, next) => {
   }
 };
 
-// Get all products or get by slug if query exists
 export const getproducts = async (req, res, next) => {
   try {
     let products;

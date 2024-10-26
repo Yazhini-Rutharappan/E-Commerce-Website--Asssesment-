@@ -12,7 +12,7 @@ export default function CreateProduct() {
 
   const filePickerRef = useRef();
 
-  // Handle image change and set the image preview
+  
   const handleImageChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
@@ -23,7 +23,7 @@ export default function CreateProduct() {
     }
   };
 
-  // Handle form submission
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -32,18 +32,18 @@ export default function CreateProduct() {
       return;
     }
 
-    const productData = new FormData(); // Use FormData for handling file upload
+    const productData = new FormData(); 
     productData.append('title', formData.title);
     productData.append('description', formData.description);
     productData.append('price', formData.price);
     productData.append('category', formData.category);
     productData.append('number', formData.number);
-    productData.append('image', file); // Append the image file to the form data
+    productData.append('image', file); 
 
     try {
       const res = await fetch('/api/product/create', {
         method: 'POST',
-        body: productData, // Send the FormData object
+        body: productData, 
       });
 
       const data = await res.json();

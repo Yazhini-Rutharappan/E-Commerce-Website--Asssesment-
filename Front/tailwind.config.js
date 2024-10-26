@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {},
     colors: {
-      'voguish-brown': '#7D6757', // Custom color for Voguish Trends
+      'voguish-brown': '#7D6757',
     },
   },
   plugins: [flowbite.content(),],

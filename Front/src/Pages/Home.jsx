@@ -10,10 +10,10 @@ export default function Home() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch('/api/product/getproducts'); // Fetches all products
+        const res = await fetch('/api/product/getproducts'); 
         if (!res.ok) throw new Error('Failed to fetch products');
         const data = await res.json();
-        setProducts(data.products);  // Set the full list of products
+        setProducts(data.products);  
       } catch (error) {
         console.error('Error fetching products:', error);
         setError('Unable to load products');
